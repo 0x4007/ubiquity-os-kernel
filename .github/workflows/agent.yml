@@ -231,10 +231,10 @@ jobs:
           const wrapperPath = path.join(binDir, "gh");
           const wrapper = `#!/usr/bin/env bash
           set -euo pipefail
-          token_file="\\${UBQ_TOKEN_FILE:-}"
-          if [ -n "\\${token_file}" ] && [ -f "\\${token_file}" ]; then
+          token_file="\${UBQ_TOKEN_FILE:-}"
+          if [ -n "\${token_file}" ] && [ -f "\${token_file}" ]; then
             auth_token=$(node -e 'const fs=require("fs"); const p=process.env.UBQ_TOKEN_FILE || ""; try{ const j=JSON.parse(fs.readFileSync(p,"utf8")); if(j && typeof j.authToken==="string" && j.authToken.trim()) process.stdout.write(j.authToken.trim()); } catch {}')
-            if [ -n "\\${auth_token}" ]; then export GH_TOKEN="\\${auth_token}"; fi
+            if [ -n "\${auth_token}" ]; then export GH_TOKEN="\${auth_token}"; fi
           fi
           exec "${realGh}" "$@"
           `;
